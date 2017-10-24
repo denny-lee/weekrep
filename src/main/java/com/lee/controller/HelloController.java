@@ -1,10 +1,14 @@
 package com.lee.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.lee.model.Developer;
 import com.lee.model.Resp;
 import com.lee.model.WeekReport;
 import com.lee.service.WeepReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,9 +22,9 @@ public class HelloController {
 
 	@RequestMapping("/")
 	public String home() {
-		return "index";
+		return "redirect:/index.html";
 	}
-	@RequestMapping("/add")
+	@RequestMapping("/save")
 	@ResponseBody
 	public Resp save(WeekReport weekReport) {
 		try {
@@ -34,27 +38,38 @@ public class HelloController {
 
 	@RequestMapping("/listAll")
 	@ResponseBody
-	public List<WeekReport> listAll(WeekReport weekReport) {
+	public List<WeekReport> listAll() {
 		return weekReportService.listAll();
 	}
 
-	@RequestMapping("/listByName")
+	@RequestMapping("/list")
 	@ResponseBody
-	public WeekReport listByName(String name) {
+	public List<WeekReport> listByName(String name) {
 		return weekReportService.findByName(name);
 	}
 
-	@RequestMapping("/delete")
+	@RequestMapping("/delete/{id}")
 	@ResponseBody
-	public Resp delete(Long id) {
+	public Resp delete(@PathVariable(name = "id") Long id) {
 		weekReportService.delete(id);
 		return new Resp(true, "success");
 	}
 
-	@RequestMapping("/delete")
+	@RequestMapping("/del")
 	@ResponseBody
-	public Resp realDel(Long id) {
+	public Resp realDel(@PathVariable(name = "id") Long id) {
 		weekReportService.realDel(id);
 		return new Resp(true, "success");
+	}
+
+	@RequestMapping("/users")
+	@ResponseBody
+	public Object users() {
+		List<Developer> users = weekReportService.listUsers();
+		JSONObject o = new JSONObject();
+		for (Developer d : users) {
+			o.put(d.getName(), d.getDep());
+		}
+		return o;
 	}
 }

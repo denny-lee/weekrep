@@ -1,6 +1,8 @@
 package com.lee.service.impl;
 
+import com.lee.dao.UserMapper;
 import com.lee.dao.WeekReportMapper;
+import com.lee.model.Developer;
 import com.lee.model.WeekReport;
 import com.lee.service.WeepReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import java.util.List;
 public class WeekReportServiceImpl implements WeepReportService {
     @Autowired
     private WeekReportMapper mapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public void save(WeekReport weekReport) {
@@ -26,7 +30,7 @@ public class WeekReportServiceImpl implements WeepReportService {
     }
 
     @Override
-    public WeekReport findByName(String name) {
+    public List<WeekReport> findByName(String name) {
         return mapper.findByName(name);
     }
 
@@ -38,5 +42,10 @@ public class WeekReportServiceImpl implements WeepReportService {
     @Override
     public void realDel(Long id) {
         mapper.del(id);
+    }
+
+    @Override
+    public List<Developer> listUsers() {
+        return userMapper.listAll();
     }
 }
