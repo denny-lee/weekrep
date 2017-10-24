@@ -28,6 +28,7 @@ public class HelloController {
 	@ResponseBody
 	public Resp save(WeekReport weekReport) {
 		try {
+			weekReport.setRemoved(false);
 			weekReportService.save(weekReport);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,5 +1,7 @@
 package com.lee.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class WeekReport {
@@ -10,7 +12,8 @@ public class WeekReport {
     private String risk;
     private String nextWeek;
     private String gain;
-    private Boolean isDelete;
+    private Boolean removed;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createGmt;
 
     public Long getId() {
@@ -69,12 +72,12 @@ public class WeekReport {
         this.gain = gain;
     }
 
-    public Boolean getDelete() {
-        return isDelete;
+    public Boolean getRemoved() {
+        return removed;
     }
 
-    public void setDelete(Boolean delete) {
-        isDelete = delete;
+    public void setRemoved(Boolean removed) {
+        this.removed = removed;
     }
 
     public Date getCreateGmt() {

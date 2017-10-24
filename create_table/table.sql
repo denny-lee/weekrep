@@ -6,11 +6,10 @@ CREATE TABLE `weekreport` (
   `risk` varchar(1000) DEFAULT NULL,
   `nextWeek` varchar(2000) DEFAULT NULL,
   `gain` varchar(1000) DEFAULT NULL,
-  `isDelete` tinyint(1) DEFAULT '0',
+  `removed` tinyint(1) DEFAULT '0',
   `createGmt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
-;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `developer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
