@@ -12,9 +12,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.lee.Application;
 
-@RunWith(SpringRunner.class)
+/*@RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes=Application.class)
+@ContextConfiguration(classes=Application.class)*/
 public class DemoApplicationTests {
 	private static final Logger log = LoggerFactory.getLogger(DemoApplicationTests.class);
 
